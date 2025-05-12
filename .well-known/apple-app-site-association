@@ -4,7 +4,7 @@
     "details": [
       {
         "appID": "NGAP4446S7.com.surapich.medilance",
-        "paths": [ "/detail/*" ]
+        "paths": ["/detail/*"]
       }
     ]
   }
