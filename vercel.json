@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/change-password/:userId",
+      "destination": "/change-password/index.html"
+    }
+  ]
+}
