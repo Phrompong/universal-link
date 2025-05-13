@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/change-password/:token",
+      "destination": "/change-password/index.html"
+    }
+  ]
+}
