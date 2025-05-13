@@ -2,23 +2,26 @@
   const userAgent = navigator.userAgent || navigator.vendor;
 
   const deepLink = "com.surapich.medilance://detail/12345"; // custom URL scheme
-  const androidStore = "https://play.google.com/store/apps/details?id=com.surapich.medilance";
+  const androidStore =
+    "https://play.google.com/store/apps/details?id=com.surapich.medilance";
   const iosStore = "https://apps.apple.com/app/id389801252";
 
   const isAndroid = /android/i.test(userAgent);
   const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
 
-  if (isIOS) {
-    window.location = deepLink;
-    setTimeout(() => window.location = iosStore, 1500);
-  } else if (isAndroid) {
-    window.location = deepLink;
-    setTimeout(() => window.location = androidStore, 1500);
-  } else {
-    alert("Unsupported platform. Please use a mobile device.");
-  }
-</script> 
+  try {
+    if (isIOS) {
+      window.location = deepLink;
+      setTimeout(() => (window.location = iosStore), 1500);
+    } else if (isAndroid) {
+      window.location = deepLink;
+      setTimeout(() => (window.location = androidStore), 1500);
+    } else {
+      alert("Unsupported platform. Please use a mobile device.");
+    }
+  } catch (e) {}
+</script>
 
 <body>
-    <h1>Redirecting...</h1>
+  <h1>Redirecting...</h1>
 </body>
