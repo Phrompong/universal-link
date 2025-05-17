@@ -12,16 +12,20 @@
         }
       }, 1500);
 
-      window.location = "com.surapich.medilance://change-password";
+      const params = new URLSearchParams(window.location.search);
 
+      const token = params.get("token");
+
+      console.log("token", token);
+
+      window.location =
+        "com.surapich.medilance://change-password?token=" + token;
+
+      // ถ้าเว็บถูกซ่อน (เช่น แอปถูกเปิด) ให้ยกเลิก fallback
       document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "hidden") {
           clearTimeout(storeTimeout);
         }
-      });
-
-      window.addEventListener("pagehide", () => {
-        clearTimeout(storeTimeout);
       });
     } catch (e) {
       clearTimeout(storeTimeout);
