@@ -4,18 +4,17 @@
 
   <script>
     let storeTimeout;
-    const iosStore = "https://apps.apple.com/app/id6742436661";
-    const androidStore =
-      "https://play.google.com/store/apps/details?id=com.surapich.medilance";
-    const isAndroid = /android/i.test(userAgent);
-    const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
 
     function load() {
       try {
         const params = new URLSearchParams(window.location.search);
-
         const token = params.get("token");
         const again = params.get("isAgain");
+        const iosStore = "https://apps.apple.com/app/id6742436661";
+        const androidStore =
+          "https://play.google.com/store/apps/details?id=com.surapich.medilance";
+        const isAndroid = /android/i.test(userAgent);
+        const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
 
         storeTimeout = setTimeout(() => {
           if (isIOS) {
