@@ -9,9 +9,19 @@
   const isAndroid = /android/i.test(userAgent);
   const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
 
+  const isWebView =
+    /wv/.test(navigator.userAgent) || /WebView/.test(navigator.userAgent);
+
   try {
+    if (isWebView) {
+      const currentUrl = window.location.href;
+
+      window.location = "https://medilance.com/change-password";
+      // return;
+    }
+
     if (isIOS) {
-      // setTimeout(() => (window.location = iosStore), 1500);
+      setTimeout(() => (window.location = iosStore), 1500);
     } else if (isAndroid) {
       setTimeout(() => (window.location = androidStore), 1500);
     } else {
