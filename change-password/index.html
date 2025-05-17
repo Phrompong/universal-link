@@ -1,6 +1,5 @@
 <body>
   <h1>Redirect...</h1>
-  <h2 id="status"></h2>
 
   <script>
     let storeTimeout;
@@ -8,9 +7,6 @@
     function load() {
       try {
         const userAgent = navigator.userAgent || navigator.vendor;
-        const params = new URLSearchParams(window.location.search);
-        const token = params.get("token");
-        const again = params.get("isAgain");
         const iosStore = "https://apps.apple.com/app/id6742436661";
         const androidStore =
           "https://play.google.com/store/apps/details?id=com.surapich.medilance";
@@ -25,24 +21,7 @@
           } else {
             alert("Unsupported platform. Please use a mobile device.");
           }
-        }, 1000);
-
-        const isWebView =
-          /wv/.test(navigator.userAgent) ||
-          /WebView/.test(navigator.userAgent) ||
-          /Safari/.test(navigator.userAgent);
-
-        // ถ้าเว็บถูกซ่อน (เช่น แอปถูกเปิด) ให้ยกเลิก fallback
-        document.addEventListener("visibilitychange", () => {
-          if (document.visibilityState === "hidden") {
-            clearTimeout(storeTimeout);
-          }
-        });
-
-        // if (isWebView) {
-        //   window.location =
-        //     "com.surapich.medilance://change-password?token=" + token;
-        // }
+        }, 2500);
       } catch (e) {
         alert("Error: " + e);
         clearTimeout(storeTimeout);
