@@ -4,12 +4,12 @@
 
   <script>
     let storeTimeout;
+    const iosStore = "https://apps.apple.com/app/id6742436661";
+    const androidStore =
+      "https://play.google.com/store/apps/details?id=com.surapich.medilance";
+
     function load() {
       try {
-        const iosStore = "https://apps.apple.com/app/id6742436661";
-        const androidStore =
-          "https://play.google.com/store/apps/details?id=com.surapich.medilance";
-
         const params = new URLSearchParams(window.location.search);
 
         const token = params.get("token");
@@ -55,6 +55,26 @@
       }
     }
 
-    load();
+    function load2() {
+      const token = params.get("token");
+      const userAgent = navigator.userAgent || navigator.vendor;
+
+      const deepLink = "yourapp://some/path"; // custom URL scheme
+
+      const isAndroid = /android/i.test(userAgent);
+      const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
+
+      if (isIOS) {
+        window.location =
+          "com.surapich.medilance://change-password?token=" + token;
+        setTimeout(() => (window.location = iosStore), 1500);
+      } else if (isAndroid) {
+        window.location = deepLink;
+        setTimeout(() => (window.location = androidStore), 1500);
+      } else {
+        window.location = "https://yourwebsite.com";
+      }
+    }
+    load2();
   </script>
 </body>
