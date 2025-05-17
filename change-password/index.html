@@ -10,8 +10,7 @@
   const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
 
   try {
-    const currentUrl = window.location.href;
-    window.location = currentUrl;
+    window.location = "com.surapich.medilance://change-password";
 
     if (isIOS) {
       setTimeout(() => (window.location = iosStore), 1500);
