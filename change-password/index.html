@@ -1,56 +1,57 @@
-<script>
-  let storeTimeout;
-  function load() {
-    try {
-      const params = new URLSearchParams(window.location.search);
-
-      const token = params.get("token");
-      const again = params.get("isAgain");
-
-      storeTimeout = setTimeout(() => {
-        if (isIOS) {
-          window.location = iosStore;
-        } else if (isAndroid) {
-          window.location = androidStore;
-        } else {
-          alert("Unsupported platform. Please use a mobile device.");
-        }
-      }, 1500);
-
-      if (again !== "true") {
-        const isWebView =
-          /wv/.test(navigator.userAgent) || /WebView/.test(navigator.userAgent);
-
-        const statusElement = document.getElementById("status");
-
-        if (isWebView) {
-          statusElement.textContent = "กำลังเปิดใน WebView ✅";
-          window.location =
-            "com.surapich.medilance://change-password?token=" + token;
-        } else {
-          statusElement.textContent = "ไม่ได้เปิดใน WebView ❌";
-          window.location =
-            "https://universal-link-brown.vercel.app/change-password?token=" +
-            token +
-            "&isAgain=true";
-        }
-
-        // ถ้าเว็บถูกซ่อน (เช่น แอปถูกเปิด) ให้ยกเลิก fallback
-        document.addEventListener("visibilitychange", () => {
-          if (document.visibilityState === "hidden") {
-            clearTimeout(storeTimeout);
-          }
-        });
-      }
-    } catch (e) {
-      clearTimeout(storeTimeout);
-    }
-  }
-
-  load();
-</script>
-
 <body>
   <h1>Redirect...</h1>
   <h2 id="status"></h2>
+
+  <script>
+    let storeTimeout;
+    function load() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+
+        const token = params.get("token");
+        const again = params.get("isAgain");
+
+        storeTimeout = setTimeout(() => {
+          if (isIOS) {
+            window.location = iosStore;
+          } else if (isAndroid) {
+            window.location = androidStore;
+          } else {
+            alert("Unsupported platform. Please use a mobile device.");
+          }
+        }, 1500);
+
+        if (again !== "true") {
+          const isWebView =
+            /wv/.test(navigator.userAgent) ||
+            /WebView/.test(navigator.userAgent);
+
+          const statusElement = document.getElementById("status");
+
+          if (isWebView) {
+            statusElement.textContent = "กำลังเปิดใน WebView";
+            window.location =
+              "com.surapich.medilance://change-password?token=" + token;
+          } else {
+            statusElement.textContent = "ไม่ได้เปิดใน WebView";
+            window.location =
+              "https://universal-link-brown.vercel.app/change-password?token=" +
+              token +
+              "&isAgain=true";
+          }
+
+          // ถ้าเว็บถูกซ่อน (เช่น แอปถูกเปิด) ให้ยกเลิก fallback
+          document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "hidden") {
+              clearTimeout(storeTimeout);
+            }
+          });
+        }
+      } catch (e) {
+        clearTimeout(storeTimeout);
+      }
+    }
+
+    load();
+  </script>
 </body>
