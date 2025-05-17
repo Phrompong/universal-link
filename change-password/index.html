@@ -17,22 +17,22 @@
         }
       }, 1500);
 
-      if (again === "true") return;
+      if (again !== "true") {
+        // window.location =
+        //   "com.surapich.medilance://change-password?token=" + token;
 
-      // window.location =
-      //   "com.surapich.medilance://change-password?token=" + token;
+        window.location =
+          "https://universal-link-brown.vercel.app/change-password?token=" +
+          token +
+          "&isAgain=true";
 
-      window.location =
-        "https://universal-link-brown.vercel.app/change-password?token=" +
-        token +
-        "&isAgain=true";
-
-      // ถ้าเว็บถูกซ่อน (เช่น แอปถูกเปิด) ให้ยกเลิก fallback
-      document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "hidden") {
-          clearTimeout(storeTimeout);
-        }
-      });
+        // ถ้าเว็บถูกซ่อน (เช่น แอปถูกเปิด) ให้ยกเลิก fallback
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "hidden") {
+            clearTimeout(storeTimeout);
+          }
+        });
+      }
     } catch (e) {
       clearTimeout(storeTimeout);
     }
