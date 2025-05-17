@@ -36,6 +36,7 @@
         // ถ้าเว็บถูกซ่อน (เช่น แอปถูกเปิด) ให้ยกเลิก fallback
         document.addEventListener("visibilitychange", () => {
           if (document.visibilityState === "hidden") {
+            statusElement.textContent = "hidden เฉย";
             clearTimeout(storeTimeout);
           }
         });
