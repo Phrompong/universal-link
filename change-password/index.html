@@ -32,17 +32,17 @@
           /WebView/.test(navigator.userAgent) ||
           /Safari/.test(navigator.userAgent);
 
-        if (isWebView) {
-          window.location =
-            "com.surapich.medilance://change-password?token=" + token;
-        }
-
         // ถ้าเว็บถูกซ่อน (เช่น แอปถูกเปิด) ให้ยกเลิก fallback
         document.addEventListener("visibilitychange", () => {
           if (document.visibilityState === "hidden") {
             clearTimeout(storeTimeout);
           }
         });
+
+        if (isWebView) {
+          window.location =
+            "com.surapich.medilance://change-password?token=" + token;
+        }
       } catch (e) {
         alert("Error: " + e);
         clearTimeout(storeTimeout);
