@@ -33,11 +33,11 @@
             window.location =
               "com.surapich.medilance://change-password?token=" + token;
           } else {
-            statusElement.textContent = "ไม่ได้เปิดใน WebView";
-            window.location =
-              "https://universal-link-brown.vercel.app/change-password?token=" +
-              token +
-              "&isAgain=true";
+            statusElement.textContent = navigator.userAgent;
+            // window.location =
+            //   "https://universal-link-brown.vercel.app/change-password?token=" +
+            //   token +
+            //   "&isAgain=true";
           }
 
           // ถ้าเว็บถูกซ่อน (เช่น แอปถูกเปิด) ให้ยกเลิก fallback
