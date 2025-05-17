@@ -1,25 +1,34 @@
 <script>
-  const userAgent = navigator.userAgent || navigator.vendor;
+  let storeTimeout;
+  function load() {
+    try {
+      storeTimeout = setTimeout(() => {
+        if (isIOS) {
+          window.location = iosStore;
+        } else if (isAndroid) {
+          window.location = androidStore;
+        } else {
+          alert("Unsupported platform. Please use a mobile device.");
+        }
+      }, 1500);
 
-  const androidStore =
-    "https://play.google.com/store/apps/details?id=com.surapich.medilance";
+      window.location = "com.surapich.medilance://change-password";
 
-  const iosStore = "https://apps.apple.com/app/id6742436661";
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") {
+          clearTimeout(storeTimeout);
+        }
+      });
 
-  const isAndroid = /android/i.test(userAgent);
-  const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
-
-  try {
-    window.location = "com.surapich.medilance://change-password";
-
-    if (isIOS) {
-      setTimeout(() => (window.location = iosStore), 1500);
-    } else if (isAndroid) {
-      setTimeout(() => (window.location = androidStore), 1500);
-    } else {
-      alert("Unsupported platform. Please use a mobile device.");
+      window.addEventListener("pagehide", () => {
+        clearTimeout(storeTimeout);
+      });
+    } catch (e) {
+      clearTimeout(storeTimeout);
     }
-  } catch (e) {}
+  }
+
+  load();
 </script>
 
 <body>
