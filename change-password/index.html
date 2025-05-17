@@ -7,6 +7,7 @@
 
     function load() {
       try {
+        const userAgent = navigator.userAgent || navigator.vendor;
         const params = new URLSearchParams(window.location.search);
         const token = params.get("token");
         const again = params.get("isAgain");
