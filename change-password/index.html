@@ -16,6 +16,7 @@
         const again = params.get("isAgain");
 
         storeTimeout = setTimeout(() => {
+          statusElement.textContent = "กำลังไปยัง Store";
           if (isIOS) {
             window.location = iosStore;
           } else if (isAndroid) {
