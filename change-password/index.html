@@ -6,6 +6,11 @@
 
     function load() {
       try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get("token");
+
+        const deepLink =
+          "com.surapich.medilance://change-password?token=" + token;
         const userAgent = navigator.userAgent || navigator.vendor;
         const iosStore = "https://apps.apple.com/app/id6742436661";
         const androidStore =
@@ -22,6 +27,8 @@
             alert("Unsupported platform. Please use a mobile device.");
           }
         }, 2500);
+
+        window.location = deepLink;
       } catch (e) {
         alert("Error: " + e);
         clearTimeout(storeTimeout);
