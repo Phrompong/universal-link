@@ -10,8 +10,6 @@
         const pathParts = window.location.pathname.split("/");
         const id = pathParts[pathParts.length - 1];
 
-        alert("ID: " + id);
-
         const deepLink = "com.surapich.medilance://detail/" + id;
         const userAgent = navigator.userAgent || navigator.vendor;
         const iosStore = "https://apps.apple.com/app/id6742436661";
