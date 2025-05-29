@@ -7,7 +7,8 @@
     function load() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get("id");
+        const pathParts = window.location.pathname.split("/");
+        const id = pathParts[pathParts.length - 1];
 
         alert("ID: " + id);
 
