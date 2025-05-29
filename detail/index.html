@@ -9,6 +9,8 @@
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get("id");
 
+        alert("ID: " + id);
+
         const deepLink = "com.surapich.medilance://detail/" + id;
         const userAgent = navigator.userAgent || navigator.vendor;
         const iosStore = "https://apps.apple.com/app/id6742436661";
