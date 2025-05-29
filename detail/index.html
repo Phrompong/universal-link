@@ -1,1 +1,39 @@
-<h1>Detail Page</h1>
+<body>
+  <h1>Redirect...</h1>
+
+  <script>
+    let storeTimeout;
+
+    function load() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+
+        const deepLink = "com.surapich.medilance://detail/" + id;
+        const userAgent = navigator.userAgent || navigator.vendor;
+        const iosStore = "https://apps.apple.com/app/id6742436661";
+        const androidStore =
+          "https://play.google.com/store/apps/details?id=com.surapich.medilance";
+        const isAndroid = /android/i.test(userAgent);
+        const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
+
+        storeTimeout = setTimeout(() => {
+          if (isIOS) {
+            window.location = iosStore;
+          } else if (isAndroid) {
+            window.location = androidStore;
+          } else {
+            alert("Unsupported platform. Please use a mobile device.");
+          }
+        }, 2500);
+
+        window.location = deepLink;
+      } catch (e) {
+        alert("Error: " + e);
+        clearTimeout(storeTimeout);
+      }
+    }
+
+    load();
+  </script>
+</body>
