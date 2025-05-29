@@ -3,6 +3,10 @@
     {
       "source": "/change-password/:token",
       "destination": "/change-password/index.html"
+    },
+    {
+      "source": "/detail/:id",
+      "destination": "/detail/index.html"
     }
   ]
 }
