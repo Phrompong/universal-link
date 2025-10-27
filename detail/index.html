@@ -7,6 +7,7 @@
     function load() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
+        console.log(urlParams);
         const pathParts = window.location.pathname.split("/");
         const id = pathParts[pathParts.length - 1];
         const title = urlParams.get("title");
