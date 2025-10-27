@@ -22,6 +22,7 @@
 
         storeTimeout = setTimeout(() => {
           if (isIOS) {
+            alert("Go to ios store");
             window.location = iosStore;
           } else if (isAndroid) {
             window.location = androidStore;
