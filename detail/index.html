@@ -22,7 +22,6 @@
 
         storeTimeout = setTimeout(() => {
           if (isIOS) {
-            alert("Go to ios store");
             window.location = iosStore;
           } else if (isAndroid) {
             window.location = androidStore;
@@ -31,7 +30,6 @@
           }
         }, 2500);
 
-        alert("Go to deep link");
         window.location = deepLink;
       } catch (e) {
         alert("Error: " + e);
